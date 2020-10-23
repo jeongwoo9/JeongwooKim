@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="TestCentreManager_Login.css">
+    <title>Document</title>
+    <style>
+        @font-face { font-family: 'font'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+        h1 {
+                    font-family: 'font', sans-serif;
+                    font-size: 20px;
+                    font-color:#302e53;
+                }
+                body {
+                    text-align: center;
+                    justify-content:center;
+                    background-image:url(doctor.jpg);
+                    background-size: cover;
+                }
+                div{
+                  width:100%%;
+                  margin:0px auto;
+
+
+                  }
+                label{
+                  display:block;
+                  padding:60px;
+                  font-size:25px;
+
+                }
+                input {
+                    width: 96%;
+                    height: 50px;
+                    border:2px solid #797979;
+                    padding-left: 10px;
+                    border-radius:20px;
+
+
+
+                }
+                #id_ {
+                    font-size: 20px;
+                }
+
+
+                #pass_ {
+                    font-size: 20px;
+                }
+                #submit {
+                  outline:none;
+                  border:none;
+                  width:70%;
+                  height:50px;
+                  border-radius:30px;
+                  color:#fff;
+                  font-size:20px;
+                  font-weight:700;
+                  text-align:center;
+                  background-image:linear-gradient(to right, #302e53, #274579,#633f85,#ef5474);
+                  background-size:200%;
+                  box-shadow: 3px 3px 8px #b1b1b1,
+                        -3px -3px 8px #fff;
+                  transition:.5s;
+                }
+                #submit:hover {
+                    background-position:right;
+                }
+            </style>
+
+
+
+
+
+
+
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+   <div class="container-fluid">
+     <div class="navbar-header">
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+
+     </div>
+     <div class="collapse navbar-collapse" id="myNavbar">
+       <ul class="nav navbar-nav">
+         <li ><a href="covidmap.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home</a></li>
+         <li  id="course" class="dropdown" ><a  href="#">Login as<span class="caret"></span></a>
+         <ul class="dropdown-menu">
+           <li><a href="TestCentreManager_login.html">Test Centre Manager</a></li>
+           <li><a href="TesterLogin.html">Tester</a></li>
+           <li><a href="patientLogin.html">Patient</a></li>
+       </ul>
+       </li>
+         <li><a href="aboutus.html">About Us</a></li>
+
+         <li><a href="viewresult.html">View Application</a></li>
+       </ul>
+     </div>
+   </div>
+ </nav>
+<!-- login -->
+<div class="main" style="">
+    <h5 style="font-size: 2em; color:#302e53; font-weight:bold;">Test Centre Manager Login</h5>
+<br>
+<br>
+
+    <h1>ManagerID</h1>
+
+    <form id="idform">
+        <input type="id" name="id" id="id_" placeholder="Enter your ID">
+    </form>
+
+    <h1>Password</h1>
+
+    <form id="passform">
+        <input type="password" name="pass" id="pass_" placeholder="Enter your Password">
+    </form>
+    <br>
+    <br>
+
+    <button id="submit">Login</button>
+</div>
+    <!--JAVASCRIPT START-->
+    <script> //JS
+        document.getElementById('submit').onclick = function() {
+            var ID = document.getElementById('id_').value;
+            var pass = document.getElementById('pass_').value;
+            if (ID === "1234" && pass === "1234") {
+                window.open('managerRegistration.html');
+            }
+            else {
+                alert("Login Failure!");
+            }
+        }
+    </script>
+
+</body>
+</html>

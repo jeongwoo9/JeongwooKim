@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Edit Remove HTML Table Row</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+
+}
+html,body{
+  display: grid;
+  height: 100%;
+  place-items: center;
+  text-align: center;
+
+}
+main {
+  background-image: url('doctor.jpg')no-repeat;background-size: auto;
+
+}
+.container{
+  width: 450px;
+  background: #274579;
+  border: 1px solid #274579;
+  border-radius: 5px;
+  padding: 20px 25px;
+}
+.container .text{
+  color: white;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 35px;
+}
+.container .input-data{
+  margin: 20px 5px 15px 5px;
+}
+.input-data .display{
+  height: 45px;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+.input-data .display input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  color: black;
+  border: 1px solid #333;
+  background: white
+  padding: 10px;
+  font-size: 17px;
+  pointer-events: none;
+  user-select: none;
+}
+.input-data .display span{
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 25px;
+  color: grey;
+  z-index: 999;
+  display: none;
+  cursor: pointer;
+}
+.input-data button{
+  display: block;
+  height: 45px;
+  width: 100%;
+  margin-top: 15px;
+  border: 1px solid white;
+  outline: none;
+  background-image:linear-gradient(to right, #302e53, #274579,#633f85,#ef5474);
+  box-shadow: 3px 3px 8px #b1b1b1,
+        -3px -3px 8px #fff;
+  transition:.5s;
+  color:white;
+  font-size: 17px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+
+}
+.input-data button:hover{
+  background-position:right;
+}
+
+.container_2{overflow: hidden}
+            .tab{float: left;}
+            .tab-2{margin-left: 100px}
+            .tab-2 input{display: block;margin-bottom: 10px}
+            tr{transition:all .25s ease-in-out}
+            tr:hover{background-color:#EEE;cursor: pointer}
+
+
+</style>
+<main>
+<link rel="stylesheet" href="style.css">
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <div class="text">
+KIT ID GENERATOR</div>
+<div class="input-data">
+    <div class="display">
+      <input type="text">
+      <span class="far fa-copy" onclick="copy()"></span>
+      <span class="fas fa-copy" onclick="copy()"></span>
+    </div>
+<button>Press to Generate KIT ID</button>
+  </div>
+</div>
+<script>
+  const display = document.querySelector("input"),
+  button = document.querySelector("button"),
+  copyBtn = document.querySelector("span.far"),
+  copyActive = document.querySelector("span.fas");
+  let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  button.onclick = ()=>{
+    let i,
+    randomPassword = "";
+    copyBtn.style.display = "block";
+    copyActive.style.display = "none";
+    for (i = 0; i < 4; i++) {
+      randomPassword = randomPassword + chars.charAt(
+        Math.floor(Math.random() * chars.length)
+      );
+    }
+    display.value = randomPassword;
+  }
+  function copy(){
+    copyBtn.style.display = "none";
+    copyActive.style.display = "block";
+    display.select();
+    document.execCommand("copy");
+  }
+</script>
+</main>
+<div class="container_2">
+            <div class="tab tab-1">
+                <table id="table" border="1">
+                    <tr>
+                        <th>Generated Kit ID </th>
+                        <th>Stock Status(Y or N)</th>
+                        <th>Number </th>
+                    </tr>
+                    <tr>
+                        <td>HQKO</td>
+                        <td>Y</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>ZO0K</td>
+                        <td>N</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>RA8P</td>
+                        <td>Y</td>
+                        <td>3</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab tab-2">
+                Generated Kit ID :<input type="text" name="fname" id="fname">
+                Stock Status(Y or N) :<input type="text" name="lname" id="lname">
+                Number  :<input type="number" name="age" id="age">
+
+                <button onclick="addHtmlTableRow();">Add</button>
+                <button onclick="editHtmlTbleSelectedRow();">Edit</button>
+                <button onclick="removeSelectedRow();">Remove</button>
+            </div>
+        </div>
+
+        <script>
+
+            var rIndex,
+                table = document.getElementById("table");
+
+            // check the empty input
+            function checkEmptyInput()
+            {
+                var isEmpty = false,
+                    fname = document.getElementById("fname").value,
+                    lname = document.getElementById("lname").value,
+                    age = document.getElementById("age").value;
+
+                if(fname === ""){
+                    alert("First Name Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(lname === ""){
+                    alert("Last Name Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(age === ""){
+                    alert("Age Connot Be Empty");
+                    isEmpty = true;
+                }
+                return isEmpty;
+            }
+
+            // add Row
+            function addHtmlTableRow()
+            {
+                // get the table by id
+                // create a new row and cells
+                // get value from input text
+                // set the values into row cell's
+                if(!checkEmptyInput()){
+                var newRow = table.insertRow(table.length),
+                    cell1 = newRow.insertCell(0),
+                    cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2),
+                    fname = document.getElementById("fname").value,
+                    lname = document.getElementById("lname").value,
+                    age = document.getElementById("age").value;
+
+                cell1.innerHTML = fname;
+                cell2.innerHTML = lname;
+                cell3.innerHTML = age;
+                // call the function to set the event to the new row
+                selectedRowToInput();
+            }
+            }
+
+            // display selected row data into input text
+            function selectedRowToInput()
+            {
+
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                      // get the seected row index
+                      rIndex = this.rowIndex;
+                      document.getElementById("fname").value = this.cells[0].innerHTML;
+                      document.getElementById("lname").value = this.cells[1].innerHTML;
+                      document.getElementById("age").value = this.cells[2].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+
+            function editHtmlTbleSelectedRow()
+            {
+                var fname = document.getElementById("fname").value,
+                    lname = document.getElementById("lname").value,
+                    age = document.getElementById("age").value;
+               if(!checkEmptyInput()){
+                table.rows[rIndex].cells[0].innerHTML = fname;
+                table.rows[rIndex].cells[1].innerHTML = lname;
+                table.rows[rIndex].cells[2].innerHTML = age;
+              }
+            }
+
+            function removeSelectedRow()
+            {
+                table.deleteRow(rIndex);
+                // clear input text
+                document.getElementById("fname").value = "";
+                document.getElementById("lname").value = "";
+                document.getElementById("age").value = "";
+            }
+        </script>
+
+    </body>
+</html>

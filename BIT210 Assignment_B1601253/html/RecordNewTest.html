@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tester Mabaging Page</title>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="managerRegistration.css">
+<style>
+
+	 body{
+			background-image:url(doctorbackground2.png);
+			background-size: cover;
+			background-attachment: fixed;
+		}
+
+		.content{
+			background: white;
+			width: 50%;
+			padding: 40px;
+			margin: 100px auto;
+			font-family: calibri;
+			border-radius: 10px;
+		}
+
+		p{
+			font-size: 25px;
+			color: black;
+		}
+#demo{
+  color:red;
+  font-size:18px;
+}
+
+.submit {
+  text-decoration:none;
+  padding:10px 10px 10px 10px;
+  margin:20px;
+  display:inline-block;
+  outline:none;
+  border:none;
+  width:70%;
+  height:60px;
+  border-radius:30px;
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  text-align:center;
+  background-image:linear-gradient(to right, #302e53, #274579,#633f85,#ef5474);
+  background-size:200%;
+  box-shadow: 3px 3px 8px #b1b1b1,
+        -3px -3px 8px #fff;
+  transition:.5s;
+}
+.submit:hover {
+    background-position:right;
+
+
+}
+#submit_small{
+    color:#fff;
+    background-color:#274579;
+
+}
+
+.submit {
+  text-decoration:none;
+  padding:10px 10px 10px 10px;
+  margin:20px;
+  display:inline-block;
+  outline:none;
+  border:none;
+  width:70%;
+  height:60px;
+  border-radius:30px;
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  text-align:center;
+  background-image:linear-gradient(to right, #302e53, #274579,#633f85,#ef5474);
+  background-size:200%;
+  box-shadow: 3px 3px 8px #b1b1b1,
+        -3px -3px 8px #fff;
+  transition:.5s;
+}
+.submit:hover {
+    background-position:right;
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+     <div class="container-fluid">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+
+       </div>
+       <div class="collapse navbar-collapse" id="myNavbar">
+         <ul class="nav navbar-nav">
+           <li ><a href="covidmap.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home</a></li>
+           <li  id="course" class="dropdown" ><a  href="#">Login as<span class="caret"></span></a>
+           <ul class="dropdown-menu">
+             <li><a href="TestCentreManager_login.html">Test Centre Manager</a></li>
+             <li><a href="TesterLogin.html">Tester</a></li>
+             <li><a href="patientLogin.html">Patient</a></li>
+         </ul>
+         </li>
+           <li><a href="#">About Us</a></li>
+           <li><a href="#">Sign Up Application</a></li>
+           <li><a href="#">View Application</a></li>
+         </ul>
+       </div>
+     </div>
+   </nav>
+<!-- enter centre name -->
+   <div class="content">
+
+<h2>Welcome,You are in Tester Login Page</h2>
+
+<a class="submit" href="recordtest.html">Click to Record New Test</a>
+<br></br>
+<a class="submit" href="UpdateTestResult.html">Update Test Result</a>
+
+</div>
+  </body>
+  </html>

@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>Main Page</title>
+    <!-- nav -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+    <linK rel="stylesheet" type="text/css" href="covidmap.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="apiCall.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        'mapsApiKey': ''/*Google Api Key*/
+      });
+      google.charts.setOnLoadCallback(loadData);
+
+      function loadData(){
+        ajaxCaller("https://api.covid19api.com/summary",function(rst){
+
+            var pushJsonData01 = [];
+            var pushJsonData02 = [];
+
+            for(var i=0;i<rst.Countries.length;i++){
+                pushJsonData01.push(rst.Countries[i].CountryCode);
+                pushJsonData01.push(rst.Countries[i].TotalConfirmed);
+                pushJsonData01.push(rst.Countries[i].TotalDeaths);
+                pushJsonData02.push(pushJsonData01);
+                pushJsonData01 = [];
+            }
+
+            drawRegionsMap(pushJsonData02,rst.Global,rst.Date);
+        });
+      }
+
+      function drawRegionsMap(pushJsonData,totalData,date) {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string','Country');
+        data.addColumn('number','Total Confirmed');
+        data.addColumn('number','Total Deaths');
+        data.addRows(
+            pushJsonData
+        );
+
+        var options = {
+            colorAxis: {colors: ['red']},
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('body'));
+
+        chart.draw(data, options);
+
+        $('#newConfirms').text("New Confirmed : " + totalData.NewConfirmed);
+        $('#totalConfirms').text("Total Confirmed : " + totalData.TotalConfirmed);
+        $('#NewDeaths').text("New Deaths : " + totalData.NewDeaths);
+        $('#TotalDeaths').text("Total Deaths : " + totalData.TotalDeaths);
+        $('#NewRecovered').text("New recovered : " + totalData.NewRecovered);
+        $('#TotalRecovered').text("New Recorvered : " + totalData.TotalRecovered);
+        $('#date').text("Date: " + date);
+      }
+    </script>
+  </head>
+  <body>
+<!-- navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+
+        <li ><a href="covidmap.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home</a></li>
+        <li  id="course" class="dropdown" ><a  href="#">Login as<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TestCentreManager_login.html">Test Centre Manager</a></li>
+          <li><a href="TesterLogin.html">Tester</a></li>
+          <li><a href="patientLogin.html">Patient</a></li>
+		  </ul>
+      </li>
+        <li><a href="aboutus.html">About Us</a></li>
+
+        <li><a href="viewresult.html">View Application</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- css part(text) -->
+    <div id="left" style="width: 24%; float: left; height: 50px; text-align:center; margin-top:70px; font-family:arial;" >
+        <h1>World Covid19 MAP</H1>
+        <h3 id="newConfirms"></h3>
+        <h3 id="totalConfirms"></h3>
+        <h3 id="NewDeaths"></h3>
+        <h3 id="TotalDeaths"></h3>
+        <h3 id="NewRecovered"></h3>
+        <h3 id="TotalRecovered"></h3>
+        <h2 id="date"></h2>
+    </div>
+    <div id="body" style="width: 74%; float: left;"></div>
+  </body>
+</html>
